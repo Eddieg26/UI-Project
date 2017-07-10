@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{2b0a0c56-3702-4330-b719-5f6b4c2d1232}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{8feb634f-53fc-41ce-88b3-860c60a43568}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{455b8a1f-18c0-423b-8c97-3cc4d13fc04e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Containers">
+      <UniqueIdentifier>{66932497-1a83-4eab-ad23-97682d92b54f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{5c3b1c60-e4b6-4ad8-9b71-6c6ae7d59173}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{45d9cbfa-4bb2-444b-92e1-9b27dbb2f390}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Events">
+      <UniqueIdentifier>{d8e45104-bb6a-4a45-b73b-573e84fc5987}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{a4e60e63-f91c-435e-99c4-f6ed17a231b6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Inc\Containers\Hash.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Containers\HashMap.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Containers\HashSet.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Containers\List.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Containers\Pair.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Containers\Ptr.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Containers\SharedArrayPtr.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Containers\Str.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Containers\Vector.h">
+      <Filter>Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Util\StringHash.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Util\types.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Math\BoundingBox.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Math\Color.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Math\Frustum.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Math\MathDefs.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Math\Mathf.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Math\Matrix3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Math\Matrix4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Math\Plane.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Math\Quaternion.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Math\Ray.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Math\Rect.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Math\Sphere.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Math\Vector2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Math\Vector3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Math\Vector4.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Util\ToString.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Events\EventDefs.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Core\TypeInfo.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Events\EventSystem.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Inc\Containers\Str.cpp">
+      <Filter>Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Util\StringHash.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Math\BoundingBox.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Math\Color.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Math\Frustum.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Math\Mathf.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Math\Matrix3.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Math\Matrix4.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Math\Plane.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Math\Quaternion.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Math\Ray.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Math\Rect.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Math\Sphere.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Math\Vector2.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Math\Vector3.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Math\Vector4.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Util\ToString.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Core\TypeInfo.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
