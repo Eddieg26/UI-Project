@@ -77,7 +77,7 @@ namespace Pyro
     template <> inline uint MakeHash(const char* value) {
         uint hash = 0;
         uint i = 0;
-        uint length = strlen(value);
+        uint length = (uint)strlen(value);
         while (i < length) {
             hash = value[i] + (hash << 6) + (hash << 16) - hash;
             ++i;

@@ -93,6 +93,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -106,6 +107,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -156,6 +158,9 @@
     <ClInclude Include="Inc\Containers\SharedArrayPtr.h" />
     <ClInclude Include="Inc\Containers\Str.h" />
     <ClInclude Include="Inc\Containers\Vector.h" />
+    <ClInclude Include="Inc\Core\Context.h" />
+    <ClInclude Include="Inc\Core\Object.h" />
+    <ClInclude Include="Inc\Core\RefCounted.h" />
     <ClInclude Include="Inc\Core\TypeInfo.h" />
     <ClInclude Include="Inc\Events\EventDefs.h" />
     <ClInclude Include="Inc\Events\EventSystem.h" />
@@ -174,13 +179,22 @@
     <ClInclude Include="Inc\Math\Vector2.h" />
     <ClInclude Include="Inc\Math\Vector3.h" />
     <ClInclude Include="Inc\Math\Vector4.h" />
+    <ClInclude Include="Inc\Renderer\BlendState.h" />
+    <ClInclude Include="Inc\Renderer\BlendStateDescription.h" />
+    <ClInclude Include="Inc\Renderer\Common.h" />
+    <ClInclude Include="Inc\Renderer\GraphicsDefs.h" />
+    <ClInclude Include="Inc\Renderer\RenderContext.h" />
     <ClInclude Include="Inc\Util\StringHash.h" />
     <ClInclude Include="Inc\Util\ToString.h" />
     <ClInclude Include="Inc\Util\types.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Inc\Containers\Str.cpp" />
+    <ClCompile Include="Inc\Core\Context.cpp" />
+    <ClCompile Include="Inc\Core\Object.cpp" />
+    <ClCompile Include="Inc\Core\RefCounted.cpp" />
     <ClCompile Include="Inc\Core\TypeInfo.cpp" />
+    <ClCompile Include="Inc\Events\EventSystem.cpp" />
     <ClCompile Include="Inc\Math\BoundingBox.cpp" />
     <ClCompile Include="Inc\Math\Color.cpp" />
     <ClCompile Include="Inc\Math\Frustum.cpp" />
@@ -195,6 +209,8 @@
     <ClCompile Include="Inc\Math\Vector2.cpp" />
     <ClCompile Include="Inc\Math\Vector3.cpp" />
     <ClCompile Include="Inc\Math\Vector4.cpp" />
+    <ClCompile Include="Inc\Renderer\BlendState.cpp" />
+    <ClCompile Include="Inc\Renderer\BlendStateDescription.cpp" />
     <ClCompile Include="Inc\Util\StringHash.cpp" />
     <ClCompile Include="Inc\Util\ToString.cpp" />
   </ItemGroup>

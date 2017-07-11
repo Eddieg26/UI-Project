@@ -25,6 +25,12 @@
     <Filter Include="Math">
       <UniqueIdentifier>{a4e60e63-f91c-435e-99c4-f6ed17a231b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Renderer\Interface">
+      <UniqueIdentifier>{d63510bd-5958-444d-91eb-84d0528c7190}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Common">
+      <UniqueIdentifier>{42b10956-3b5d-458c-92eb-5e579a02b535}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\Containers\Hash.h">
@@ -117,6 +123,30 @@
     <ClInclude Include="Inc\Events\EventSystem.h">
       <Filter>Events</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\Core\RefCounted.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\GraphicsDefs.h">
+      <Filter>Renderer\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\BlendStateDescription.h">
+      <Filter>Renderer\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\BlendState.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\Common.h">
+      <Filter>Renderer\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\RenderContext.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Core\Object.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Core\Context.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Inc\Containers\Str.cpp">
@@ -172,6 +202,24 @@
     </ClCompile>
     <ClCompile Include="Inc\Core\TypeInfo.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Core\RefCounted.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\BlendState.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Core\Object.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Core\Context.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Events\EventSystem.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\BlendStateDescription.cpp">
+      <Filter>Renderer\Common</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

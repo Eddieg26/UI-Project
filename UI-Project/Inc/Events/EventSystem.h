@@ -1,41 +1,79 @@
 #pragma once
 
 #include "EventDefs.h"
+#include "../Core/Object.h"
 #include "../Containers/HashMap.h"
 
 namespace Pyro {
 
-    class EventSystem {
+    class EventSystem : public Object {
+        PYRO_OBJECT(EventSystem, Object)
+
     private:
+        /// Map of events seperated by event type
         HashMap<ActionType, HashMap<StringHash, IEvent*>> events;
 
     public:
+        /// Construct
+        EventSystem(Context* context);
+        /// Destruct
+        ~EventSystem();
+
         /// Start listening for an event
-        template <typename Type> void StartListening(const String& eventName, Action<void, Type> listener) {
+        template <typename Type> void StartListening(const String& eventName, Action<Type> action) {
+            typedef Event<Type> PyroEvent;
+
             ActionType actionType(Type::GetTypeStatic());
             StringHash eventHash(eventName);
 
-            auto iter = events.Map().find(actionType);
-            if (iter != events.Map().end()) {
-                auto eventIter = iter->first.Map().find(eventHash);
-                if (eventIter != iter->first.Map().end()) {
-                    Event<Type>* thisEvent = reinterpret_cast<Event<Type>*>(eventIter->second);
-                    thisEvent->AddListener(listener);
+            auto actionIter = events.Map().find(actionType);
+            if (actionIter != events.Map().end()) {
+                auto eventIter = actionIter->second.Map().find(eventHash);
+                if (eventIter != actionIter->second.Map().end()) {
+                    PyroEvent* thisEvent = reinterpret_cast<PyroEvent*>(eventIter->second);
+                    thisEvent->AddAction(action);
                 }
                 else {
-                    Event<Type>* newEvent = new Event<Type>();
-                    newEvent->AddListener(listener);
-                    eventIter->second.Add(actionType, newEvent);
+                    PyroEvent* thisEvent = new PyroEvent;
+                    thisEvent->AddAction(action);
+                    actionIter->second.Add(eventHash, thisEvent);
                 }
             }
             else {
-                Event<Type>* newEvent = new Event<Type>();
-                newEvent->AddListener(listener);
+                HashMap<StringHash, IEvent*> eventMap;
+                PyroEvent* thisEvent = new PyroEvent;
+            }
+        }
 
-                HashMap<StringHash, IEvent> eventMap;
-                eventMap.Add(eventHash, newEvent);
+        template<typename Type> void StopListening(const String& eventName, Action<Type> action) {
+            typedef Event<Type> PyroEvent;
 
-                events.Add(actionType, eventMap);
+            ActionType actionType(Type::GetTypeStatic());
+            StringHash eventHash(eventName);
+
+            auto actionIter = events.Map().find(actionType);
+            if (actionIter != events.Map().end()) {
+                auto eventIter = actionIter->second.Map().find(eventHash);
+                if (eventIter != actionIter->second.Map().end()) {
+                    PyroEvent* thisEvent = reinterpret_cast<PyroEvent*>(eventIter->second);
+                    thisEvent->RemoveAction(action);
+                }
+            }
+        }
+
+        template<typename Type> void SendEvent(const String& eventName, Type& args) {
+            typedef Event<Type> PyroEvent;
+
+            ActionType actionType(Type::GetTypeStatic());
+            StringHash eventHash(eventName);
+
+            auto actionIter = events.Map().find(actionType);
+            if (actionIter != events.Map().end()) {
+                auto eventIter = actionIter->second.Map().find(eventHash);
+                if (eventIter != actionIter->second.Map().end()) {
+                    PyroEvent* thisEvent = reinterpret_cast<PyroEvent*>(eventIter->second);
+                    thisEvent->invoke(args);
+                }
             }
         }
     };

@@ -75,28 +75,16 @@ namespace Pyro
         typedef Action<Arg> EventAction;
 
     private:
+        /// List of actions
         Vector<EventAction*> actions;
 
     public:
+        /// Construct
         Event() = default;
 
+        /// Destruct
         ~Event() {
             Clear();
-        }
-
-        Event(const Event& rhs) {
-            *this = rhs;
-        }
-
-        Event& operator=(const Event& rhs) {
-            if (*this != &rhs) {
-                Clear();
-                for (uint i = 0; i < rhs.actions.Size(); ++i) {
-                    AddAction(rhs.actions[i]);
-                }
-            }
-
-            return *this;
         }
 
         void AddAction(const EventAction* action) {
@@ -116,11 +104,31 @@ namespace Pyro
             return actions.Contains(action);
         }
 
+        void invoke(Arg& arg) {
+            for (uint i = 0; i < actions.Size(); ++i) {
+                EventAction* action = actions[i];
+                action->invoke(arg);
+            }
+        }
+
+        void operator()(Arg arg) {
+            for (uint i = 0; i < actions.Size(); ++i) {
+                EventAction* action = actions[i];
+                action->invoke(arg);
+            }
+        }
+
         virtual StringHash EventType() const override { return EventTypeStatic(); }
         virtual String EventTypeName() const override { return EventTypeNameStatic(); }
 
-        static StringHash EventTypeStatic() const { return Arg::GetTypeNameStatic(); }
-        static String EventTypeNameStatic() const { return Arg::GetTypeStatic(); }
+        static StringHash EventTypeStatic() { return Arg::GetTypeNameStatic(); }
+        static String EventTypeNameStatic() { return Arg::GetTypeStatic(); }
+
+    private:
+        /// Prevent copy construction
+        Event(const Event&) = delete;
+        /// Prevent assignment
+        Event& operator=(const Event&) = delete;
     };
 
 #define EventData(typeName) \

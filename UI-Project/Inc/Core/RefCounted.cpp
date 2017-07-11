@@ -4,24 +4,24 @@
 
 namespace Pyro
 {
-    RefCounted::RefCounted() : refs(0) {}
+    RefCounted::RefCounted() : refCount(new RefCount) {}
 
     RefCounted::~RefCounted() {
-        assert(refs == 0);
+        assert(refCount && refCount->refs == 0);
 
-        refs = -1;
+        refCount->refs = -1;
     }
 
     void RefCounted::AddRef() {
-        assert(refs >= 0);
-        ++refs;
+        assert(refCount && refCount->refs >= 0);
+        ++refCount->refs;
     }
 
     void RefCounted::ReleaseRef() {
-        assert(refs > 0);
-        --refs;
+        assert(refCount->refs > 0);
+        --refCount->refs;
 
-        if (!refs)
+        if (!refCount->refs)
             delete this;
     }
 }

@@ -4,6 +4,18 @@ namespace Pyro
 {
     typedef const void* ClassID;
 
+    struct RefCount {
+        /// Reference count. If below zero, the object has been destroyed.
+        int refs;
+
+        /// Construct
+        RefCount() : refs(0) {}
+        /// Destruct
+        ~RefCount() {
+            refs = 0;
+        }
+    };
+
 #define REFCOUNTED(typeName) \
 	public: \
 		virtual ClassID GetClassID() const { return GetClassIDStatic(); } \
@@ -14,7 +26,7 @@ namespace Pyro
 
     private:
         /// Reference count. If below zero the object has been destroyed
-        int refs;
+        RefCount* refCount;
 
     public:
         /// Construct. Allocate the reference count structure and set an initial self weak reference.
@@ -28,7 +40,11 @@ namespace Pyro
         /// Decrement reference count and delete self in no more references.
         void ReleaseRef();
         /// Return reference count
-        int Refs() const { return refs; }
+        int Refs() const { return refCount ? refCount->refs : 0; }
+        /// Return reference count structure
+        RefCount* RefCountPtr() { return refCount; }
+        /// Return reference count structure
+        const RefCount* RefCountPtr() const { return refCount; }
 
         /// Returns whether is object or not
         virtual bool IsObject() const { return false; }
@@ -38,9 +54,8 @@ namespace Pyro
 
     private:
         /// Prevent copy construction
-        RefCounted(const RefCounted& rhs);
-
+        RefCounted(const RefCounted& rhs) = delete;
         /// Prevent assignment
-        RefCounted& operator=(const RefCounted& rhs);
+        RefCounted& operator=(const RefCounted& rhs) = delete;
     };
 }

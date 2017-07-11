@@ -823,7 +823,7 @@ namespace Pyro
         char temp[7];
 
 #ifdef _WIN32
-        unsigned size = std::wcslen(str) + 1;
+        uint size = (uint)std::wcslen(str) + 1;
         while (size) {
             unsigned unicodeChar = DecodeUTF16(str);
             char* dest = temp;
