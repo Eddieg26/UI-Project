@@ -9,4 +9,5 @@ namespace Pyro
     typedef ID3D11DeviceContext* DeviceContextPtr;
 
     typedef ID3D11BlendState* BlendStatePtr;
+    typedef ID3D11RasterizerState* RasterizerStatePtr;
 }

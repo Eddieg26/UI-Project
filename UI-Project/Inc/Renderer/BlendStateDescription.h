@@ -6,6 +6,11 @@
 namespace Pyro
 {
     struct BlendStateDescription {
+        BlendStateDescription();
+
+        bool operator==(const BlendStateDescription& desc) const;
+        bool operator!=(const BlendStateDescription& desc) const;
+
         BlendFactor blendSource;
         BlendFactor blendDestination;
 
@@ -15,10 +20,5 @@ namespace Pyro
         byte colorWriteMask;
         bool enableBlend;
         bool alphaToCoverage;
-
-        BlendStateDescription();
-
-        bool operator==(const BlendStateDescription& desc) const;
-        bool operator!=(const BlendStateDescription& desc) const;
     };
 }

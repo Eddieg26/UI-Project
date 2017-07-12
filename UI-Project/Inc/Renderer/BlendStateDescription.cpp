@@ -11,7 +11,19 @@ namespace Pyro
         enableBlend(false),
         alphaToCoverage(false) {}
 
-    bool BlendStateDescription::operator==(const BlendStateDescription& desc) const { return false; }
-    bool BlendStateDescription::operator!=(const BlendStateDescription& desc) const { return false; }
+    bool BlendStateDescription::operator==(const BlendStateDescription& desc) const { 
+        bool success = true;
+        success &= blendSource == desc.blendSource;
+        success &= blendDestination == desc.blendDestination;
+        success &= alphaSource == desc.alphaSource;
+        success &= alphaDestination == desc.alphaDestination;
+        success &= colorWriteMask == desc.colorWriteMask;
+        success &= enableBlend == desc.enableBlend;
+        success &= alphaToCoverage == desc.alphaToCoverage;
+        return success;
+    }
 
+    bool BlendStateDescription::operator!=(const BlendStateDescription& desc) const { 
+        return !(*this == desc);
+    }
 }

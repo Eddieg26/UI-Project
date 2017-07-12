@@ -30,7 +30,7 @@ namespace Pyro
 
         /// Return D3D Blend state
         BlendStatePtr GetBlendState() const { return blendState; }
-        /// Return blendState description
-        const BlendStateDescription& Desc() const { return blendStateDescription; }
+        /// Return blend State description
+        const BlendStateDescription& BlendDesc() const { return blendStateDescription; }
     };
 }
