@@ -126,12 +126,6 @@
     <ClInclude Include="Inc\Core\RefCounted.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\Renderer\GraphicsDefs.h">
-      <Filter>Renderer\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\Renderer\BlendStateDescription.h">
-      <Filter>Renderer\Common</Filter>
-    </ClInclude>
     <ClInclude Include="Inc\Renderer\BlendState.h">
       <Filter>Renderer\Interface</Filter>
     </ClInclude>
@@ -146,6 +140,27 @@
     </ClInclude>
     <ClInclude Include="Inc\Core\Context.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\RasterizerState.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\DepthStencilState.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\RasterizerStateDescription.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\DepthStencilStateDescription.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\BlendStateDescription.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\Enums.h">
+      <Filter>Renderer\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\Translate.h">
+      <Filter>Renderer\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -218,8 +233,17 @@
     <ClCompile Include="Inc\Events\EventSystem.cpp">
       <Filter>Events</Filter>
     </ClCompile>
+    <ClCompile Include="Inc\Renderer\RasterizerState.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\RasterizerStateDescription.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\DepthStencilStateDescription.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
     <ClCompile Include="Inc\Renderer\BlendStateDescription.cpp">
-      <Filter>Renderer\Common</Filter>
+      <Filter>Renderer\Interface</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -5,7 +5,12 @@
 
 namespace Pyro
 {
-    struct StencilFaceDescription {
+    struct StencilOpDescription {
+        StencilOpDescription();
+
+        bool operator ==(const StencilOpDescription& rhs) const;
+        bool operator !=(const StencilOpDescription& rhs) const;
+
         StencilOp stencilFailOp;
         StencilOp stencilPassOp;
         StencilOp depthFailOp;
@@ -22,7 +27,7 @@ namespace Pyro
         bool stencilEnable;
         bool depthWrite;
         CompareFunc depthFunc;
-        StencilFaceDescription frontFace;
-        StencilFaceDescription backFace;
+        StencilOpDescription frontFace;
+        StencilOpDescription backFace;
     };
 }

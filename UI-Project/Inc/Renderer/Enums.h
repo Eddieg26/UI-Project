@@ -2,10 +2,6 @@
 
 namespace Pyro
 {
-#define SAFERELEASE(ptr) if(ptr){ptr->Release(); ptr = nullptr;}
-#define SAFEDELETE(ptr) if(ptr){delete ptr; ptr = nullptr;}
-#define SAFEDELETEARRAY(ptr) if(ptr){delete[] ptr; ptr = nullptr;} 
-
     enum class Result {
         Success,
         Failed

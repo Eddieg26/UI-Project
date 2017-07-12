@@ -72,19 +72,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\Libraries\Documents\Visual Studio 2017\Libraries\turboBadger;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\Libraries\Documents\Visual Studio 2017\Libraries\turboBadger;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>E:\Libraries\Documents\Visual Studio 2017\Libraries\turboBadger;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>E:\Libraries\Documents\Visual Studio 2017\Libraries\turboBadger;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -182,8 +182,13 @@
     <ClInclude Include="Inc\Renderer\BlendState.h" />
     <ClInclude Include="Inc\Renderer\BlendStateDescription.h" />
     <ClInclude Include="Inc\Renderer\Common.h" />
-    <ClInclude Include="Inc\Renderer\GraphicsDefs.h" />
+    <ClInclude Include="Inc\Renderer\DepthStencilState.h" />
+    <ClInclude Include="Inc\Renderer\DepthStencilStateDescription.h" />
+    <ClInclude Include="Inc\Renderer\Enums.h" />
+    <ClInclude Include="Inc\Renderer\RasterizerState.h" />
+    <ClInclude Include="Inc\Renderer\RasterizerStateDescription.h" />
     <ClInclude Include="Inc\Renderer\RenderContext.h" />
+    <ClInclude Include="Inc\Renderer\Translate.h" />
     <ClInclude Include="Inc\Util\StringHash.h" />
     <ClInclude Include="Inc\Util\ToString.h" />
     <ClInclude Include="Inc\Util\types.h" />
@@ -211,6 +216,9 @@
     <ClCompile Include="Inc\Math\Vector4.cpp" />
     <ClCompile Include="Inc\Renderer\BlendState.cpp" />
     <ClCompile Include="Inc\Renderer\BlendStateDescription.cpp" />
+    <ClCompile Include="Inc\Renderer\DepthStencilStateDescription.cpp" />
+    <ClCompile Include="Inc\Renderer\RasterizerState.cpp" />
+    <ClCompile Include="Inc\Renderer\RasterizerStateDescription.cpp" />
     <ClCompile Include="Inc\Util\StringHash.cpp" />
     <ClCompile Include="Inc\Util\ToString.cpp" />
   </ItemGroup>
