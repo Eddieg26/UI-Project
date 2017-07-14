@@ -14,4 +14,5 @@ namespace Pyro
 
     typedef ID3D11BlendState* BlendStatePtr;
     typedef ID3D11RasterizerState* RasterizerStatePtr;
+	typedef ID3D11DepthStencilState* DepthStencilStatePtr;
 }

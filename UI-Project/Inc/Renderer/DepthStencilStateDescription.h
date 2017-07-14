@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GraphicsDefs.h"
+#include "Enums.h"
 #include "../Util/types.h"
 
 namespace Pyro

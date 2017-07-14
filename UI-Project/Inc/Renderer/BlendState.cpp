@@ -3,19 +3,19 @@
 
 namespace Pyro
 {
-    BlendState::BlendState() : blendState(nullptr) {}
+	BlendState::BlendState() : blendState(nullptr) {}
 
-    BlendState::~BlendState() {
-        SAFERELEASE(blendState);
-    }
+	BlendState::~BlendState() {
+		SAFERELEASE(blendState);
+	}
 
-    Result BlendState::Create(RenderContext& renderContext, const BlendStateDescription& desc) {
+	Result Create(RenderDevice& renderDevice, const BlendStateDescription& desc) {
 
-        return Result::Failed;
-    }
+		return Result::Failed;
+	}
 
-    void BlendState::Bind(RenderContext& renderContext, bool force) const {
-        // TODO:
-    }
+	void BlendState::Bind(RenderContext& renderContext, bool force) const {
+		// TODO:
+	}
 
 }

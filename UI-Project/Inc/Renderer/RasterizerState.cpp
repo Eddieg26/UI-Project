@@ -2,20 +2,18 @@
 
 namespace Pyro
 {
-    RasterizerState::RasterizerState() : rasterizerState(nullptr) {}
+	RasterizerState::RasterizerState() : rasterizerState(nullptr) {}
 
-    RasterizerState::~RasterizerState() {
-        SAFERELEASE(rasterizerState);
-    }
+	RasterizerState::~RasterizerState() {
+		SAFERELEASE(rasterizerState);
+	}
 
-    Result RasterizerState::Create(RenderContext& renderContext, const RasterizerStateDescription& desc) {
-        // TODO: Need to create RenderContext class
+	Result RasterizerState::Create(RenderDevice& renderDevice, const RasterizerStateDescription& desc) {
 
-        return Result::Failed;
-    }
+		return Result::Failed;
+	}
 
-    void RasterizerState::Bind(RenderContext& renderContext, bool force = false) const {
-        // TODO: Need to create RenderContext class
-    }
+	void RasterizerState::Bind(RenderContext& renderContext, bool force) const {
+	}
 
 }

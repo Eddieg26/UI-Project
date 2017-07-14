@@ -1,11 +1,12 @@
 #pragma once
-
 #include "../Core/RefCounted.h"
+
 #include "BlendStateDescription.h"
 #include "Common.h"
 
 namespace Pyro
 {
+	class RenderDevice;
     class RenderContext;
 
     class BlendState : public RefCounted {
@@ -24,7 +25,7 @@ namespace Pyro
         ~BlendState();
 
         /// Create blend state and return result
-        Result Create(RenderContext& renderContext, const BlendStateDescription& desc);
+        Result Create(RenderDevice& renderDevice, const BlendStateDescription& desc);
         /// Blind blend state to pipeline
         void Bind(RenderContext& renderContext, bool force = false) const;
 

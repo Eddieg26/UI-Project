@@ -1,11 +1,12 @@
 #pragma once
-
 #include "../Core/RefCounted.h"
+
 #include "RasterizerStateDescription.h"
 #include "Common.h"
 
 namespace Pyro
 {
+	class RenderDevice;
     class RenderContext;
 
     class RasterizerState : public RefCounted {
@@ -24,7 +25,7 @@ namespace Pyro
         ~RasterizerState();
 
         /// Create rasterizer state and return result
-        Result Create(RenderContext& renderContext, const RasterizerStateDescription& desc);
+        Result Create(RenderDevice& renderDevice, const RasterizerStateDescription& desc);
         /// Blind rasterizer state to pipeline
         void Bind(RenderContext& renderContext, bool force = false) const;
 

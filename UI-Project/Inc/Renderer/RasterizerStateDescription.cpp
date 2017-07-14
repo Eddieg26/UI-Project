@@ -14,7 +14,7 @@ namespace Pyro
         multiSampleEnable(false),
         antialiasedLineEnable(false) {}
 
-    bool RasterizerStateDescription::operator!=(const RasterizerStateDescription& desc) const {
+    bool RasterizerStateDescription::operator==(const RasterizerStateDescription& desc) const {
         bool success = true;
         success &= fillMode == desc.fillMode;
         success &= cullMode == desc.cullMode;
