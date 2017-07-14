@@ -162,6 +162,15 @@
     <ClInclude Include="Inc\Renderer\Translate.h">
       <Filter>Renderer\Common</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\Renderer\RenderDevice.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\SamplerStateDescription.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\SamplerState.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Inc\Containers\Str.cpp">
@@ -243,6 +252,18 @@
       <Filter>Renderer\Interface</Filter>
     </ClCompile>
     <ClCompile Include="Inc\Renderer\BlendStateDescription.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\DepthStencilState.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\Translate.cpp">
+      <Filter>Renderer\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\SamplerStateDescription.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\SamplerState.cpp">
       <Filter>Renderer\Interface</Filter>
     </ClCompile>
   </ItemGroup>

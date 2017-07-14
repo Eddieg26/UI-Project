@@ -15,7 +15,6 @@ namespace Pyro
 	}
 
 	void BlendState::Bind(RenderContext& renderContext, bool force) const {
-		// TODO:
 	}
 
 }

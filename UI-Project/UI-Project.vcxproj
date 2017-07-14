@@ -188,6 +188,9 @@
     <ClInclude Include="Inc\Renderer\RasterizerState.h" />
     <ClInclude Include="Inc\Renderer\RasterizerStateDescription.h" />
     <ClInclude Include="Inc\Renderer\RenderContext.h" />
+    <ClInclude Include="Inc\Renderer\RenderDevice.h" />
+    <ClInclude Include="Inc\Renderer\SamplerState.h" />
+    <ClInclude Include="Inc\Renderer\SamplerStateDescription.h" />
     <ClInclude Include="Inc\Renderer\Translate.h" />
     <ClInclude Include="Inc\Util\StringHash.h" />
     <ClInclude Include="Inc\Util\ToString.h" />
@@ -216,9 +219,13 @@
     <ClCompile Include="Inc\Math\Vector4.cpp" />
     <ClCompile Include="Inc\Renderer\BlendState.cpp" />
     <ClCompile Include="Inc\Renderer\BlendStateDescription.cpp" />
+    <ClCompile Include="Inc\Renderer\DepthStencilState.cpp" />
     <ClCompile Include="Inc\Renderer\DepthStencilStateDescription.cpp" />
     <ClCompile Include="Inc\Renderer\RasterizerState.cpp" />
     <ClCompile Include="Inc\Renderer\RasterizerStateDescription.cpp" />
+    <ClCompile Include="Inc\Renderer\SamplerState.cpp" />
+    <ClCompile Include="Inc\Renderer\SamplerStateDescription.cpp" />
+    <ClCompile Include="Inc\Renderer\Translate.cpp" />
     <ClCompile Include="Inc\Util\StringHash.cpp" />
     <ClCompile Include="Inc\Util\ToString.cpp" />
   </ItemGroup>
