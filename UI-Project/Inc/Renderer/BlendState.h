@@ -28,6 +28,8 @@ namespace Pyro
         Result Create(RenderDevice& renderDevice, const BlendStateDescription& desc);
         /// Blind blend state to pipeline
         void Bind(RenderContext& renderContext, bool force = false) const;
+        /// Release the blend state
+        void Release();
 
         /// Return D3D Blend state
         BlendStatePtr GetBlendState() const { return blendState; }

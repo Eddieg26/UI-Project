@@ -42,6 +42,8 @@ namespace Pyro
         float Average() const;
 
         /// Return color as float array
+        float* Data() { return &r; }
+        /// Return color as float array
         const float* Data() const { return &r; }
 
         static Color Red();

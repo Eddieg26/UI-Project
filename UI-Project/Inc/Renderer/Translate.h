@@ -5,6 +5,7 @@
 enum D3D11_CULL_MODE;
 enum D3D11_FILL_MODE;
 enum D3D11_FILTER;
+enum D3D11_TEXTURE_ADDRESS_MODE;
 enum D3D11_BLEND;
 enum D3D11_BLEND_OP;
 enum D3D11_STENCIL_OP;
@@ -27,6 +28,7 @@ namespace Pyro
 		static D3D11_CULL_MODE toD3DCullMode(CullMode mode);
 		static D3D11_FILL_MODE toD3DFillMode(FillMode mode);
 		static D3D11_FILTER toD3DFilter(TextureFilterMode filter);
+        static D3D11_TEXTURE_ADDRESS_MODE ToD3DWrapMode(TextureWrapMode mode);
 		static D3D11_BLEND toD3DBlend(BlendFactor factor);
 		static D3D11_BLEND_OP toD3DBlendOp(BlendOp blendOp);
 		static D3D11_STENCIL_OP toD3DStencilOP(StencilOp stencilOp);

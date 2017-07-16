@@ -61,6 +61,29 @@ namespace Pyro
 		return D3D11_FILTER_MIN_MAG_LINEAR_MIP_POINT;
 	}
 
+    D3D11_TEXTURE_ADDRESS_MODE TranslateDX11::ToD3DWrapMode(TextureWrapMode mode) {
+        switch (mode)
+        {
+        case Pyro::TextureWrapMode::Wrap:
+            return D3D11_TEXTURE_ADDRESS_WRAP;
+            break;
+        case Pyro::TextureWrapMode::Mirror:
+            return D3D11_TEXTURE_ADDRESS_MIRROR;
+            break;
+        case Pyro::TextureWrapMode::Clamp:
+            return D3D11_TEXTURE_ADDRESS_CLAMP;
+            break;
+        case Pyro::TextureWrapMode::Border:
+            return D3D11_TEXTURE_ADDRESS_BORDER;
+            break;
+        case Pyro::TextureWrapMode::MirrorOnce:
+            return D3D11_TEXTURE_ADDRESS_MIRROR_ONCE;
+            break;
+        }
+
+        return D3D11_TEXTURE_ADDRESS_WRAP;
+     }
+
 	D3D11_BLEND TranslateDX11::toD3DBlend(BlendFactor factor) {
 		switch (factor)
 		{

@@ -13,9 +13,11 @@ namespace Pyro
 
         BlendFactor blendSource;
         BlendFactor blendDestination;
+        BlendOp blendOp;
 
         BlendFactor alphaSource;
         BlendFactor alphaDestination;
+        BlendOp alphaBlendOp;
 
         byte colorWriteMask;
         bool enableBlend;

@@ -24,10 +24,12 @@ namespace Pyro
 		/// Destruct
 		~DepthStencilState();
 
-		/// Create rasterizer state and return result
+		/// Create depth stencil state and return result
 		Result Create(RenderDevice& renderDevice, const DepthStencilStateDescription& desc);
-		/// Blind rasterizer state to pipeline
+		/// Blind depth stencil state to pipeline
 		void Bind(RenderContext& renderContext, bool force = false) const;
+        /// Release depth stencil state
+        void Release();
 
 		/// Return D3D depth stencil state
 		DepthStencilStatePtr GetDepthStencilState() const { return depthStencilState; }

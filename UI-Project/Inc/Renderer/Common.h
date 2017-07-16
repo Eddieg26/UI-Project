@@ -8,6 +8,12 @@ namespace Pyro
 #define SAFEDELETE(ptr) if(ptr){delete ptr; ptr = nullptr;}
 #define SAFEDELETEARRAY(ptr) if(ptr){delete[] ptr; ptr = nullptr;} 
 
+#if defined(_DEBUG) || defined(DEBUG)
+#define SET_DEBUG_NAME(resource, name) resource->SetPrivateData(WKPDID_D3DDebugObjectName, (UINT)strlen(name), name);
+#else
+#define SET_DEBUG_NAME(resource, name)
+#endif
+
     typedef IDXGISwapChain* SwapChainPtr;
     typedef ID3D11Device* DevicePtr;
     typedef ID3D11DeviceContext* DeviceContextPtr;
