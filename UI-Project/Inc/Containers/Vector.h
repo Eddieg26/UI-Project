@@ -103,7 +103,7 @@ namespace Pyro
 
     template<typename Type>
     void Vector<Type>::AddRange(const Type* items, uint count) {
-        uint oldSize = mData.size();
+        uint oldSize = (uint)mData.size();
         mData.resize(mData.size() + count);
         std::copy(items, items + count, mData.begin() + oldSize);
     }

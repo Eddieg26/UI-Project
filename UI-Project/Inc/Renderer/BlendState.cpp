@@ -34,6 +34,7 @@ namespace Pyro
         D3D11_BLEND_DESC blendDesc = translateBlendDesc(desc);
         HRESULT result = renderDevice.GetDevice()->CreateBlendState(&blendDesc, &blendState);
 
+        blendStateDescription = desc;
         return SUCCEEDED(result) ? Result::Success : Result::Failed;
 	}
 

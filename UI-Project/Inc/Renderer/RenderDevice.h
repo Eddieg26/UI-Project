@@ -12,6 +12,8 @@ namespace Pyro
     struct DepthStencilStateDescription;
     struct RasterizerStateDescription;
     struct SamplerStateDescription;
+    struct BufferDescription;
+    struct InputLayoutDescription;
 
 	class RenderDevice : public RefCounted {
 		REFCOUNTED(RenderDevice);
@@ -39,6 +41,8 @@ namespace Pyro
 		Result CreateRasterizerState(const String& name, const RasterizerStateDescription& desc);
 		/// Create a sampler state and add it to the render context if successfully created
 		Result CreateSamplerState(const String& name, const SamplerStateDescription& desc);
+        /// Create an input layout and add it to the render context if successfully created
+        Result CreateInputLayout(const String& name, const InputLayoutDescription& desc);
 
 		/// Return D3D device
 		DevicePtr GetDevice() const { return device; }

@@ -22,4 +22,9 @@ namespace Pyro
     typedef ID3D11RasterizerState* RasterizerStatePtr;
 	typedef ID3D11DepthStencilState* DepthStencilStatePtr;
 	typedef ID3D11SamplerState* SamplerStatePtr;
+    typedef ID3D11ShaderResourceView* ShaderResourceViewPtr;
+    typedef ID3D11RenderTargetView* RenderTargetViewPtr;
+
+    typedef ID3D11InputLayout* InputLayoutPtr;
+    typedef ID3D11Buffer* BufferPtr;
 }

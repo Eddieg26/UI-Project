@@ -13,6 +13,7 @@ namespace Pyro
     class DepthStencilState;
     class RasterizerState;
     class SamplerState;
+    class InputLayout;
 
 	class RenderContext : public RefCounted {
 		REFCOUNTED(RenderContext);
@@ -26,6 +27,7 @@ namespace Pyro
 		HashMap<uint, SharedPtr<DepthStencilState>> depthStencilStates;
 		HashMap<uint, SharedPtr<RasterizerState>> rasterizerStates;
 		HashMap<uint, SharedPtr<SamplerState>> samplerStates;
+        HashMap<uint, SharedPtr<InputLayout>> inputLayouts;
 
 	public:
 		/// Construct
@@ -36,9 +38,10 @@ namespace Pyro
         /// Return D3D device context
         DeviceContextPtr GetContext() const { return context; }
 
-        BlendState* GetBlendState(const String& name) const;
-        DepthStencilState* GetDepthSteniclState(const String& name) const;
-        RasterizerState* GetRasterizerState(const String& name) const;
-        SamplerState* GetSamplerState(const String& name) const;
+        BlendState* GetBlendState(const String& name);
+        DepthStencilState* GetDepthSteniclState(const String& name);
+        RasterizerState* GetRasterizerState(const String& name);
+        SamplerState* GetSamplerState(const String& name);
+        InputLayout* GetInputLayout(const String& name);
 	};
 }

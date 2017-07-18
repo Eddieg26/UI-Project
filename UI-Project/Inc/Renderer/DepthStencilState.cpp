@@ -43,6 +43,7 @@ namespace Pyro
         D3D11_DEPTH_STENCIL_DESC depthStencilDesc = translateDepthStencilDesc(desc);
         HRESULT result = renderDevice.GetDevice()->CreateDepthStencilState(&depthStencilDesc, &depthStencilState);
 
+        depthStencilDescription = desc;
         return SUCCEEDED(result) ? Result::Success : Result::Failed;
 	}
 

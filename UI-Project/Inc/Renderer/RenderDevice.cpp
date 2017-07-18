@@ -4,6 +4,12 @@
 #include "DepthStencilState.h"
 #include "RasterizerState.h"
 #include "SamplerState.h"
+#include "InputLayout.h"
+
+#include <d3d11.h>
+
+#pragma comment(lib, "dxgi.lib")
+#pragma comment (lib, "d3d11.lib")
 
 namespace Pyro
 {
@@ -80,8 +86,8 @@ namespace Pyro
 
         //adapter->EnumOutputs(0, &videoOutput);
 
-        SET_DEBUG_NAME(device, "Device");
-        SET_DEBUG_NAME(deviceContext, "Context");
+        /*SET_DEBUG_NAME(device, "Device");
+        SET_DEBUG_NAME(deviceContext, "Context");*/
 
         SAFERELEASE(factory);
         SAFERELEASE(adapter);
@@ -112,4 +118,11 @@ namespace Pyro
         samplerState->Create(*this, desc);
         return renderContext->samplerStates.Add(name.ToHash(), SharedPtr<SamplerState>(samplerState)) ? Result::Success : Result::Failed;
     }
+
+    Result RenderDevice::CreateInputLayout(const String& name, const InputLayoutDescription& desc) {
+        SharedPtr<InputLayout> inputLayout(new InputLayout);
+        inputLayout->Create(*this, desc);
+        return renderContext->inputLayouts.Add(name.ToHash(), SharedPtr<InputLayout>(inputLayout)) ? Result::Success : Result::Failed;
+    }
+
 }

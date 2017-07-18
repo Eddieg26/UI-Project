@@ -171,6 +171,21 @@
     <ClInclude Include="Inc\Renderer\SamplerState.h">
       <Filter>Renderer\Interface</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\Renderer\ShaderResourceView.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\BufferDescription.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\Buffer.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\InputLayout.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\InputLayoutDescription.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Inc\Containers\Str.cpp">
@@ -264,6 +279,24 @@
       <Filter>Renderer\Interface</Filter>
     </ClCompile>
     <ClCompile Include="Inc\Renderer\SamplerState.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\RenderDevice.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\RenderContext.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\BufferDescription.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\Buffer.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\InputLayoutDescription.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\InputLayout.cpp">
       <Filter>Renderer\Interface</Filter>
     </ClCompile>
   </ItemGroup>

@@ -32,6 +32,7 @@ namespace Pyro
         D3D11_SAMPLER_DESC samplerDesc = translateSamplerDesc(desc);
         HRESULT result = renderDevice.GetDevice()->CreateSamplerState(&samplerDesc, &samplerState);
 
+        samplerStateDescription = desc;
         return SUCCEEDED(result) ? Result::Success : Result::Failed;
 	}
 

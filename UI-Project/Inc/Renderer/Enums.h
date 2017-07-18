@@ -132,6 +132,15 @@ namespace Pyro
         Always
     };
 
+    enum class BufferType {
+        Vertex,
+        Index,
+        Constant,
+        Structured,
+
+        Unknown
+    };
+
     enum class DSVDimension {
         Unknown,
         Texture1D,

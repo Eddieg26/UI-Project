@@ -52,7 +52,7 @@ namespace Pyro
             return map.find(key) != map.end();
         }
 
-        bool TryGetValue(const TKey& key, TValue& value) {
+        bool TryGetValue(const TKey& key, TValue& value) const {
             auto it = map.find(key);
 
             if (it != map.end()) {

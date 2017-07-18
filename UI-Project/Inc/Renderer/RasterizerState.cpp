@@ -34,6 +34,7 @@ namespace Pyro
         D3D11_RASTERIZER_DESC rasterizerDesc = translateRasterizerDesc(desc);
         HRESULT result = renderDevice.GetDevice()->CreateRasterizerState(&rasterizerDesc, &rasterizerState);
 
+        rasterizerStateDescription = desc;
         return SUCCEEDED(result) ? Result::Success : Result::Failed;
 	}
 
