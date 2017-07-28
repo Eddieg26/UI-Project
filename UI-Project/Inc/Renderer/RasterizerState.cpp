@@ -38,9 +38,6 @@ namespace Pyro
         return SUCCEEDED(result) ? Result::Success : Result::Failed;
 	}
 
-	void RasterizerState::Bind(RenderContext& renderContext, bool force) const {
-	}
-
     void RasterizerState::Release() {
         SAFERELEASE(rasterizerState);
     }

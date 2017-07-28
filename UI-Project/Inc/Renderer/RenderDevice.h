@@ -12,8 +12,12 @@ namespace Pyro
     struct DepthStencilStateDescription;
     struct RasterizerStateDescription;
     struct SamplerStateDescription;
-    struct BufferDescription;
     struct InputLayoutDescription;
+    struct BufferDescription;
+    struct RenderTargetViewDesc;
+    struct DepthStencilViewDesc;
+    struct ShaderResourceViewDesc;
+    struct TextureDescription;
 
 	class RenderDevice : public RefCounted {
 		REFCOUNTED(RenderDevice);
@@ -43,8 +47,30 @@ namespace Pyro
 		Result CreateSamplerState(const String& name, const SamplerStateDescription& desc);
         /// Create an input layout and add it to the render context if successfully created
         Result CreateInputLayout(const String& name, const InputLayoutDescription& desc);
+        /// Create a vertex buffer and add it to the render context if successfully created
+        Result CreateVertexBuffer(const String& name, const BufferDescription& desc);
+        /// Create an index buffer and add it to the render context if successfully created
+        Result CreateIndexBuffer(const String& name, const BufferDescription& desc);
+        /// Create a constant buffer and add it to the render context if successfully created
+        Result CreateConstantBuffer(const String& name, const BufferDescription& desc);
+        /// Create a structured buffer and add it to the render context if successfully created
+        Result CreateStructuredBuffer(const String& name, const BufferDescription& desc);
+        /// Create a texture and add it to the render context if successfully created
+        Result CreateTexture(const String& name, const TextureDescription& desc);
+        /// Create a shader and add it to the render context if successfully created
+        Result CreateShader(const String& name, const String& shaderPath, ShaderType shaderType);
+        /// Create render target view and add it to the render context if successfully created
+        Result CreateRenderTargetView(const String& name, RenderTargetViewDesc& desc, ID3D11Resource* resource = nullptr);
+        /// Create depth stencil view and add it to the render context if successfully created
+        Result CreateDepthStencilView(const String& name, DepthStencilViewDesc& desc, ID3D11Resource* resource = nullptr);
+        /// Create shader resource view and add it to the render context if successfully created
+        Result CreateShaderResourceView(const String& name, ShaderResourceViewDesc& desc, ID3D11Resource* resource = nullptr);
+        /// Create view port and add it to the render context if successfully created
+        Result CreateViewport(const String& name, float left, float top, float width, float height);
 
 		/// Return D3D device
 		DevicePtr GetDevice() const { return device; }
+        /// Return render context
+        RenderContext* GetRenderContext() const { return renderContext; }
 	};
 }

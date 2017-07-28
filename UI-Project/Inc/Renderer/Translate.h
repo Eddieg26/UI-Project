@@ -2,6 +2,7 @@
 
 #include "Enums.h"
 
+enum D3D_PRIMITIVE_TOPOLOGY;
 enum D3D11_CULL_MODE;
 enum D3D11_FILL_MODE;
 enum D3D11_FILTER;
@@ -25,6 +26,7 @@ namespace Pyro
 		TranslateDX11& operator==(const TranslateDX11&) = delete;
 
 	public:
+        static D3D_PRIMITIVE_TOPOLOGY toD3DTopology(TopologyType type);
 		static D3D11_CULL_MODE toD3DCullMode(CullMode mode);
 		static D3D11_FILL_MODE toD3DFillMode(FillMode mode);
 		static D3D11_FILTER toD3DFilter(TextureFilterMode filter);

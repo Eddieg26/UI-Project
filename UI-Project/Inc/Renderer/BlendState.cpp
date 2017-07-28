@@ -1,6 +1,7 @@
 #include "BlendState.h"
 #include "RenderDevice.h"
 #include "RenderContext.h"
+#include "PipelineState.h"
 #include "Translate.h"
 
 namespace Pyro
@@ -38,7 +39,8 @@ namespace Pyro
         return SUCCEEDED(result) ? Result::Success : Result::Failed;
 	}
 
-	void BlendState::Bind(RenderContext& renderContext, bool force) const {
+	void BlendState::Bind(RenderContext& renderContext, bool force) {
+
 	}
 
     void BlendState::Release() {

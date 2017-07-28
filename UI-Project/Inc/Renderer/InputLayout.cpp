@@ -36,10 +36,6 @@ namespace Pyro
         return SUCCEEDED(result) ? Result::Success : Result::Failed;
     }
 
-    void InputLayout::Bind(RenderContext& renderContext, bool force) const {
-
-    }
-
     void InputLayout::Release() {
         SAFERELEASE(inputLayout);
     }

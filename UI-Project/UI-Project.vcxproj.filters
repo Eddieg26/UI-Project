@@ -31,6 +31,12 @@
     <Filter Include="Renderer\Common">
       <UniqueIdentifier>{42b10956-3b5d-458c-92eb-5e579a02b535}</UniqueIdentifier>
     </Filter>
+    <Filter Include="IO">
+      <UniqueIdentifier>{11f2f13c-0de7-4aa2-bf9b-ea941bda4b1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Pipeline">
+      <UniqueIdentifier>{a548bb97-e45e-4114-8e2c-7e00e00f7d53}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\Containers\Hash.h">
@@ -49,9 +55,6 @@
       <Filter>Containers</Filter>
     </ClInclude>
     <ClInclude Include="Inc\Containers\Ptr.h">
-      <Filter>Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\Containers\SharedArrayPtr.h">
       <Filter>Containers</Filter>
     </ClInclude>
     <ClInclude Include="Inc\Containers\Str.h">
@@ -177,14 +180,59 @@
     <ClInclude Include="Inc\Renderer\BufferDescription.h">
       <Filter>Renderer\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\Renderer\Buffer.h">
-      <Filter>Renderer\Interface</Filter>
-    </ClInclude>
     <ClInclude Include="Inc\Renderer\InputLayout.h">
       <Filter>Renderer\Interface</Filter>
     </ClInclude>
     <ClInclude Include="Inc\Renderer\InputLayoutDescription.h">
       <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\VertexBuffer.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\IndexBuffer.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\ConstantBuffer.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\StructuredBuffer.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\Shader.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\IO\Deserializer.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\IO\File.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\IO\FileSystem.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\IO\Serializer.h">
+      <Filter>IO</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\RenderTargetView.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\RenderTargetViewDesc.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\DepthStencilView.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\DepthStencilViewDesc.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\ShaderResourceViewDesc.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\Viewport.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\PipelineState.h">
+      <Filter>Renderer\Pipeline</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -290,14 +338,62 @@
     <ClCompile Include="Inc\Renderer\BufferDescription.cpp">
       <Filter>Renderer\Interface</Filter>
     </ClCompile>
-    <ClCompile Include="Inc\Renderer\Buffer.cpp">
-      <Filter>Renderer\Interface</Filter>
-    </ClCompile>
     <ClCompile Include="Inc\Renderer\InputLayoutDescription.cpp">
       <Filter>Renderer\Interface</Filter>
     </ClCompile>
     <ClCompile Include="Inc\Renderer\InputLayout.cpp">
       <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\VertexBuffer.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\IndexBuffer.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\ConstantBuffer.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\StructuredBuffer.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\Shader.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\IO\Deserializer.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\IO\File.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\IO\FileSystem.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\IO\Serializer.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\RenderTargetView.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\RenderTargetViewDesc.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\DepthStencilViewDesc.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\DepthStencilView.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\ShaderResourceViewDesc.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\ShaderResourceView.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\Viewport.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\PipelineState.cpp">
+      <Filter>Renderer\Pipeline</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -2,6 +2,8 @@
 
 #include "../Core/RefCounted.h"
 
+#include <assert.h>
+
 namespace Pyro
 {
     /// Shared pointer template class with intrusive reference counting.

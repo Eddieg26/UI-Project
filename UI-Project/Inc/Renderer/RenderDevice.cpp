@@ -5,6 +5,16 @@
 #include "RasterizerState.h"
 #include "SamplerState.h"
 #include "InputLayout.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
+#include "ConstantBuffer.h"
+#include "StructuredBuffer.h"
+#include "D3DTexture.h"
+#include "Shader.h"
+#include "RenderTargetView.h"
+#include "DepthStencilView.h"
+#include "ShaderResourceView.h"
+#include "Viewport.h"
 
 #include <d3d11.h>
 
@@ -97,32 +107,118 @@ namespace Pyro
 
     Result RenderDevice::CreateBlendState(const String& name, const BlendStateDescription& desc) {
         SharedPtr<BlendState> blendState(new BlendState);
-        blendState->Create(*this, desc);
-        return renderContext->blendStates.Add(name.ToHash(), SharedPtr<BlendState>(blendState)) ? Result::Success : Result::Failed;
+        if (blendState->Create(*this, desc) == Result::Failed)
+            return Result::Failed;
+
+        return renderContext->blendStates.Add(name.ToHash(), blendState) ? Result::Success : Result::Failed;
     }
 
     Result RenderDevice::CreateDepthStencilState(const String& name, const DepthStencilStateDescription& desc) {
         SharedPtr<DepthStencilState> depthStencilState(new DepthStencilState);
-        depthStencilState->Create(*this, desc);
-        return renderContext->depthStencilStates.Add(name.ToHash(), SharedPtr<DepthStencilState>(depthStencilState)) ? Result::Success : Result::Failed;
+        if (depthStencilState->Create(*this, desc) == Result::Failed)
+            return Result::Failed;
+
+        return renderContext->depthStencilStates.Add(name.ToHash(), depthStencilState) ? Result::Success : Result::Failed;
     }
 
     Result RenderDevice::CreateRasterizerState(const String& name, const RasterizerStateDescription& desc) {
         SharedPtr<RasterizerState> rasterizerState(new RasterizerState);
         rasterizerState->Create(*this, desc);
-        return renderContext->rasterizerStates.Add(name.ToHash(), SharedPtr<RasterizerState>(rasterizerState)) ? Result::Success : Result::Failed;
+        return renderContext->rasterizerStates.Add(name.ToHash(), rasterizerState) ? Result::Success : Result::Failed;
     }
 
     Result RenderDevice::CreateSamplerState(const String& name, const SamplerStateDescription& desc) {
         SharedPtr<SamplerState> samplerState(new SamplerState);
-        samplerState->Create(*this, desc);
-        return renderContext->samplerStates.Add(name.ToHash(), SharedPtr<SamplerState>(samplerState)) ? Result::Success : Result::Failed;
+        if (samplerState->Create(*this, desc) == Result::Failed)
+            return Result::Failed;
+
+        return renderContext->samplerStates.Add(name.ToHash(), samplerState) ? Result::Success : Result::Failed;
     }
 
     Result RenderDevice::CreateInputLayout(const String& name, const InputLayoutDescription& desc) {
         SharedPtr<InputLayout> inputLayout(new InputLayout);
-        inputLayout->Create(*this, desc);
-        return renderContext->inputLayouts.Add(name.ToHash(), SharedPtr<InputLayout>(inputLayout)) ? Result::Success : Result::Failed;
+        if (inputLayout->Create(*this, desc) == Result::Failed)
+            return Result::Failed;
+
+        return renderContext->inputLayouts.Add(name.ToHash(), inputLayout) ? Result::Success : Result::Failed;
     }
 
+    Result RenderDevice::CreateVertexBuffer(const String& name, const BufferDescription& desc) {
+        SharedPtr<VertexBuffer> vertexBuffer(new VertexBuffer);
+        if (vertexBuffer->Create(*this, desc) == Result::Failed)
+            return Result::Failed;
+
+        return renderContext->vertexBuffers.Add(name.ToHash(), vertexBuffer) ? Result::Success : Result::Failed;
+    }
+
+    Result RenderDevice::CreateIndexBuffer(const String& name, const BufferDescription& desc) {
+        SharedPtr<IndexBuffer> indexBuffer(new IndexBuffer);
+        if (indexBuffer->Create(*this, desc) == Result::Failed)
+            return Result::Failed;
+
+        return renderContext->indexBuffers.Add(name.ToHash(), indexBuffer) ? Result::Success : Result::Failed;
+    }
+
+    Result RenderDevice::CreateConstantBuffer(const String& name, const BufferDescription& desc) {
+        SharedPtr<ConstantBuffer> constantBuffer(new ConstantBuffer);
+        if (constantBuffer->Create(*this, desc) == Result::Failed)
+            return Result::Failed;
+
+        return renderContext->constantBuffers.Add(name.ToHash(), constantBuffer) ? Result::Success : Result::Failed;
+    }
+
+    Result RenderDevice::CreateStructuredBuffer(const String& name, const BufferDescription& desc) {
+        SharedPtr<StructuredBuffer> structuredBuffer(new StructuredBuffer);
+        if (structuredBuffer->Create(*this, desc) == Result::Failed)
+            return Result::Failed;
+
+        return renderContext->structuredBuffers.Add(name.ToHash(), structuredBuffer) ? Result::Success : Result::Failed;
+    }
+
+    Result RenderDevice::CreateTexture(const String& name, const TextureDescription& desc) {
+        SharedPtr<D3DTexture> texture(new D3DTexture);
+        if (texture->Create(*this, desc) == Result::Failed)
+            return Result::Failed;
+
+        return renderContext->textures.Add(name.ToHash(), texture) ? Result::Success : Result::Failed;
+    }
+
+    Result RenderDevice::CreateShader(const String& name, const String& shaderPath, ShaderType shaderType) {
+        SharedPtr<Shader> shader(new Shader);
+        if (shader->LoadShader(*this, shaderPath, shaderType) == Result::Failed)
+            return Result::Failed;
+
+        return renderContext->shaders.Add(name.ToHash(), shader) ? Result::Success : Result::Failed;
+    }
+
+    Result RenderDevice::CreateRenderTargetView(const String& name, RenderTargetViewDesc& desc, ID3D11Resource* resource) {
+        SharedPtr<RenderTargetView> renderTarget(new RenderTargetView);
+        if (renderTarget->Create(*this, desc, resource) == Result::Failed)
+            return Result::Failed;
+
+        return renderContext->renderTargetViews.Add(name.ToHash(), renderTarget) ? Result::Success : Result::Failed;
+    }
+
+    Result RenderDevice::CreateDepthStencilView(const String& name, DepthStencilViewDesc& desc, ID3D11Resource* resource) {
+        SharedPtr<DepthStencilView> depthStencilView(new DepthStencilView);
+        if (depthStencilView->Create(*this, desc, resource) == Result::Failed)
+            return Result::Failed;
+
+        return renderContext->depthStencilViews.Add(name.ToHash(), depthStencilView) ? Result::Success : Result::Failed;
+    }
+
+    Result RenderDevice::CreateShaderResourceView(const String& name, ShaderResourceViewDesc& desc, ID3D11Resource* resource) {
+        SharedPtr<ShaderResourceView> shaderResourceView(new ShaderResourceView);
+        if (shaderResourceView->Create(*this, desc, resource) == Result::Failed)
+            return Result::Failed;
+
+        return renderContext->shaderResourceViews.Add(name.ToHash(), shaderResourceView) ? Result::Success : Result::Failed;
+    }
+
+    Result RenderDevice::CreateViewport(const String& name, float left, float top, float width, float height) {
+        SharedPtr<Viewport> viewport(new Viewport);
+        viewport->SetDimensions(left, top, width, height);
+
+        return renderContext->viewports.Add(name.ToHash(), viewport) ? Result::Success : Result::Failed;
+    }
 }

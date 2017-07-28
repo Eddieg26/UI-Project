@@ -36,10 +36,6 @@ namespace Pyro
         return SUCCEEDED(result) ? Result::Success : Result::Failed;
 	}
 
-	void SamplerState::Bind(RenderContext& renderContext, bool force) const {
-
-	}
-
     void SamplerState::Release() {
         SAFERELEASE(samplerState);
     }

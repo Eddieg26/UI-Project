@@ -27,8 +27,6 @@ namespace Pyro
 
         /// Create input layout and add it to render context if successfully created
         Result Create(RenderDevice& renderDevice, const InputLayoutDescription& desc);
-        /// Bind input layout to the pipeline
-        void Bind(RenderContext& renderContext, bool force = false) const;
         /// Release input layout
         void Release();
 

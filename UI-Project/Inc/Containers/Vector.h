@@ -34,9 +34,13 @@ namespace Pyro
         void Reverse();
         void Reverse(uint start, uint count);
 
-        // Reallocate so that no extra memory is used.
+        /// Reallocate so that no extra memory is used.
         void Compact();
         void Reserve(uint newCapacity);
+
+        void Resize(uint newSize);
+        /// Resize and fill with item
+        void Resize(uint newSize, Type item);
 
         bool Contains(const Type& item) const;
         bool Empty() const { return mData.empty(); }
@@ -217,6 +221,16 @@ namespace Pyro
     template<typename Type>
     void Vector<Type>::Reserve(uint capacity) {
         mData.reserve(capacity);
+    }
+
+    template<typename Type>
+    void Vector<Type>::Resize(uint newSize) {
+        mData.resize(newSize);
+    }
+
+    template<typename Type>
+    void Vector<Type>::Resize(uint newSize, Type item) {
+        mData.resize(newSize, item);
     }
 
     template<typename Type>

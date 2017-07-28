@@ -4,6 +4,35 @@
 
 namespace Pyro
 {
+    D3D_PRIMITIVE_TOPOLOGY TranslateDX11::toD3DTopology(TopologyType type) {
+        switch (type)
+        {
+        case Pyro::TopologyType::Undefined:
+            return D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+            break;
+        case Pyro::TopologyType::TriangleList:
+            return D3D11_PRIMITIVE_TOPOLOGY_LINELIST;
+            break;
+        case Pyro::TopologyType::LineList:
+            return D3D11_PRIMITIVE_TOPOLOGY_POINTLIST;
+            break;
+        case Pyro::TopologyType::PointList:
+            return D3D11_PRIMITIVE_TOPOLOGY_POINTLIST;
+            break;
+        case Pyro::TopologyType::TriangleStrip:
+            return D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP;
+            break;
+        case Pyro::TopologyType::LineStrip:
+            return D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP;
+            break;
+        case Pyro::TopologyType::TriangleFan:
+            return D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+            break;
+        }
+
+        return D3D11_PRIMITIVE_TOPOLOGY_UNDEFINED;
+    }
+
 	D3D11_CULL_MODE TranslateDX11::toD3DCullMode(CullMode mode) {
 		switch (mode)
 		{

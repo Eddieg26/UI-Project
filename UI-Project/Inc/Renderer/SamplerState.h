@@ -26,8 +26,6 @@ namespace Pyro
 
 		/// Create sampler state
 		Result Create(RenderDevice& renderDevice, const SamplerStateDescription& desc);
-		/// Bind sampler state
-		void Bind(RenderContext& renderContext, bool force = false) const;
         /// Release D3D sampler state
         void Release();
 

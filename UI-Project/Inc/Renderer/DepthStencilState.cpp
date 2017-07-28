@@ -47,10 +47,6 @@ namespace Pyro
         return SUCCEEDED(result) ? Result::Success : Result::Failed;
 	}
 
-	void DepthStencilState::Bind(RenderContext& renderContext, bool force) const {
-
-	}
-
     void DepthStencilState::Release() {
         SAFERELEASE(depthStencilState);
     }

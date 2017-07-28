@@ -26,8 +26,6 @@ namespace Pyro
 
         /// Create rasterizer state and return result
         Result Create(RenderDevice& renderDevice, const RasterizerStateDescription& desc);
-        /// Blind rasterizer state to pipeline
-        void Bind(RenderContext& renderContext, bool force = false) const;
         /// Release D3D rasterizer state
         void Release();
 

@@ -1,17 +1,15 @@
 #pragma once
 #include "../Core/RefCounted.h"
 
-#include "Enums.h"
 #include "Common.h"
 #include "BufferDescription.h"
 
 namespace Pyro
 {
     class RenderDevice;
-    class RenderContext;
 
-    class Buffer : public RefCounted {
-        REFCOUNTED(Buffer);
+    class IndexBuffer : public RefCounted {
+        REFCOUNTED(IndexBuffer);
 
     private:
         /// D3D buffer
@@ -23,14 +21,12 @@ namespace Pyro
 
     public:
         /// Construct
-        Buffer();
+        IndexBuffer();
         /// Destruct
-        ~Buffer();
+        ~IndexBuffer();
 
         /// Create buffer and return result
         Result Create(RenderDevice& renderDevice, const BufferDescription& desc);
-        /// Bind buffer to pipeline
-        void Bind(RenderContext& renderContext, uint slot, bool force = false) const;
         /// Release buffer
         void Release();
 
@@ -39,10 +35,8 @@ namespace Pyro
         /// Sets a range of data in the buffer
         template <typename T> void SetDataRange(const T* data, uint start, uint count);
 
-        /// Return D3D buffer
+        /// Return buffer
         BufferPtr GetBuffer() const { return buffer; }
-        /// Return buffer description
-        BufferDescription BufferDesc() const { return bufferDescription; }
 
     private:
         /// Map the GPU buffer into CPU memory
@@ -51,7 +45,7 @@ namespace Pyro
         void UnMap();
     };
 
-    template <typename T> void Buffer::SetData(const T* data, uint count) {
+    template <typename T> void IndexBuffer::SetData(const T* data, uint count) {
         if (!data || !count)
             return;
 
@@ -62,7 +56,7 @@ namespace Pyro
         }
     }
 
-    template <typename T> void Buffer::SetDataRange(const T* data, uint start, uint count) {
+    template <typename T> void IndexBuffer::SetDataRange(const T* data, uint start, uint count) {
         if (!data || !count || !count)
             return;
 
@@ -72,5 +66,4 @@ namespace Pyro
             UnMap();
         }
     }
-
 }

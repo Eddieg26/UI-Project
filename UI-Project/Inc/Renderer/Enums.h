@@ -53,6 +53,15 @@ namespace Pyro
         Anisotropic
     };
 
+    enum class TextureDimension {
+        Texture1D,
+        Texture2D,
+        Texture3D,
+        TextureCube,
+
+        Unknown
+    };
+
     enum class BlendMode {
         None = 0,
         Additive = 1,
@@ -186,5 +195,12 @@ namespace Pyro
         TextureCube,
         TextureCubeArray,
         BufferEx
+    };
+
+    enum class ShaderType {
+        Vertex,
+        Pixel,
+        Geometry,
+        Compute
     };
 }
