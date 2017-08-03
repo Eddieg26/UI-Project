@@ -9,6 +9,7 @@
 #include "IndexBuffer.h"
 #include "ConstantBuffer.h"
 #include "StructuredBuffer.h"
+#include "D3DTexture.h"
 #include "Shader.h"
 #include "RenderTargetView.h"
 #include "DepthStencilView.h"

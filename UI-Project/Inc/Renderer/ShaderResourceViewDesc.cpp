@@ -11,7 +11,7 @@ namespace Pyro
         success &= firstElement == rhs.firstElement;
         success &= numElements == rhs.numElements;
         success &= firstArraySlice == rhs.firstArraySlice;
-        success &-arraySize == rhs.arraySize;
+        success &= arraySize == rhs.arraySize;
         return success;
     }
 

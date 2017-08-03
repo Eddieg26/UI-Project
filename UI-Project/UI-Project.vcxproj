@@ -72,19 +72,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(IncludePath)</IncludePath>
+    <IncludePath>E:\Projects\UI-Project\deps;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(IncludePath)</IncludePath>
+    <IncludePath>E:\Projects\UI-Project\deps;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(IncludePath)</IncludePath>
+    <IncludePath>E:\Projects\UI-Project\deps;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(IncludePath)</IncludePath>
+    <IncludePath>E:\Projects\UI-Project\deps;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -187,11 +187,13 @@
     <ClInclude Include="Inc\Renderer\BufferDescription.h" />
     <ClInclude Include="Inc\Renderer\Common.h" />
     <ClInclude Include="Inc\Renderer\ConstantBuffer.h" />
+    <ClInclude Include="Inc\Renderer\D3DTexture.h" />
     <ClInclude Include="Inc\Renderer\DepthStencilState.h" />
     <ClInclude Include="Inc\Renderer\DepthStencilStateDescription.h" />
     <ClInclude Include="Inc\Renderer\DepthStencilView.h" />
     <ClInclude Include="Inc\Renderer\DepthStencilViewDesc.h" />
     <ClInclude Include="Inc\Renderer\Enums.h" />
+    <ClInclude Include="Inc\Renderer\Graphics.h" />
     <ClInclude Include="Inc\Renderer\IndexBuffer.h" />
     <ClInclude Include="Inc\Renderer\InputLayout.h" />
     <ClInclude Include="Inc\Renderer\InputLayoutDescription.h" />
@@ -200,6 +202,7 @@
     <ClInclude Include="Inc\Renderer\RasterizerStateDescription.h" />
     <ClInclude Include="Inc\Renderer\RenderContext.h" />
     <ClInclude Include="Inc\Renderer\RenderDevice.h" />
+    <ClInclude Include="Inc\Renderer\RenderSettings.h" />
     <ClInclude Include="Inc\Renderer\RenderTargetView.h" />
     <ClInclude Include="Inc\Renderer\RenderTargetViewDesc.h" />
     <ClInclude Include="Inc\Renderer\SamplerState.h" />
@@ -208,6 +211,7 @@
     <ClInclude Include="Inc\Renderer\ShaderResourceView.h" />
     <ClInclude Include="Inc\Renderer\ShaderResourceViewDesc.h" />
     <ClInclude Include="Inc\Renderer\StructuredBuffer.h" />
+    <ClInclude Include="Inc\Renderer\TextureDescription.h" />
     <ClInclude Include="Inc\Renderer\Translate.h" />
     <ClInclude Include="Inc\Renderer\VertexBuffer.h" />
     <ClInclude Include="Inc\Renderer\Viewport.h" />
@@ -244,10 +248,12 @@
     <ClCompile Include="Inc\Renderer\BlendStateDescription.cpp" />
     <ClCompile Include="Inc\Renderer\BufferDescription.cpp" />
     <ClCompile Include="Inc\Renderer\ConstantBuffer.cpp" />
+    <ClCompile Include="Inc\Renderer\D3DTexture.cpp" />
     <ClCompile Include="Inc\Renderer\DepthStencilState.cpp" />
     <ClCompile Include="Inc\Renderer\DepthStencilStateDescription.cpp" />
     <ClCompile Include="Inc\Renderer\DepthStencilView.cpp" />
     <ClCompile Include="Inc\Renderer\DepthStencilViewDesc.cpp" />
+    <ClCompile Include="Inc\Renderer\Graphics.cpp" />
     <ClCompile Include="Inc\Renderer\IndexBuffer.cpp" />
     <ClCompile Include="Inc\Renderer\InputLayout.cpp" />
     <ClCompile Include="Inc\Renderer\InputLayoutDescription.cpp" />
@@ -256,6 +262,7 @@
     <ClCompile Include="Inc\Renderer\RasterizerStateDescription.cpp" />
     <ClCompile Include="Inc\Renderer\RenderContext.cpp" />
     <ClCompile Include="Inc\Renderer\RenderDevice.cpp" />
+    <ClCompile Include="Inc\Renderer\RenderSettings.cpp" />
     <ClCompile Include="Inc\Renderer\RenderTargetView.cpp" />
     <ClCompile Include="Inc\Renderer\RenderTargetViewDesc.cpp" />
     <ClCompile Include="Inc\Renderer\SamplerState.cpp" />
@@ -264,6 +271,7 @@
     <ClCompile Include="Inc\Renderer\ShaderResourceView.cpp" />
     <ClCompile Include="Inc\Renderer\ShaderResourceViewDesc.cpp" />
     <ClCompile Include="Inc\Renderer\StructuredBuffer.cpp" />
+    <ClCompile Include="Inc\Renderer\TextureDescription.cpp" />
     <ClCompile Include="Inc\Renderer\Translate.cpp" />
     <ClCompile Include="Inc\Renderer\VertexBuffer.cpp" />
     <ClCompile Include="Inc\Renderer\Viewport.cpp" />

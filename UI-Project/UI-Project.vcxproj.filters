@@ -234,6 +234,18 @@
     <ClInclude Include="Inc\Renderer\PipelineState.h">
       <Filter>Renderer\Pipeline</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\Renderer\D3DTexture.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\TextureDescription.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\Graphics.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Renderer\RenderSettings.h">
+      <Filter>Renderer\Interface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Inc\Containers\Str.cpp">
@@ -394,6 +406,18 @@
     </ClCompile>
     <ClCompile Include="Inc\Renderer\PipelineState.cpp">
       <Filter>Renderer\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\D3DTexture.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\TextureDescription.cpp">
+      <Filter>Renderer\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\Graphics.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Inc\Renderer\RenderSettings.cpp">
+      <Filter>Renderer\Interface</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
