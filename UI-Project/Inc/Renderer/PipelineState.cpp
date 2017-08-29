@@ -17,7 +17,15 @@
 
 namespace Pyro
 {
-    Vector<BufferPtr> GetConstantBuffers(Vector<ConstantBuffer*> constantBuffers) {
+    Vector<BufferPtr> GetVertexBuffers(const Vector<VertexBuffer*>& vertexBuffers) {
+        Vector<BufferPtr> ret;
+        for (uint i = 0; i < vertexBuffers.Size(); ++i)
+            ret.Add(vertexBuffers[i] ? vertexBuffers[i]->GetBuffer() : nullptr);
+
+        return ret;
+    }
+
+    Vector<BufferPtr> GetConstantBuffers(const Vector<ConstantBuffer*>& constantBuffers) {
         Vector<BufferPtr> ret;
         for (uint i = 0; i < constantBuffers.Size(); ++i)
             ret.Add(constantBuffers[i] ? constantBuffers[i]->GetBuffer() : nullptr);
@@ -25,7 +33,7 @@ namespace Pyro
         return ret;
     }
 
-    Vector<SamplerStatePtr> GetSamplerState(Vector<SamplerState*> samplers) {
+    Vector<SamplerStatePtr> GetSamplerState(const Vector<SamplerState*>& samplers) {
         Vector<SamplerStatePtr> ret;
         for (uint i = 0; i < samplers.Size(); ++i)
             ret.Add(samplers[i] ? samplers[i]->GetSamplerState() : nullptr);
@@ -33,10 +41,30 @@ namespace Pyro
         return ret;
     }
 
-    Vector<ShaderResourceViewPtr> GetShaderResourceViews(Vector<ShaderResourceView*> shaderResourceViews) {
+    Vector<ShaderResourceViewPtr> GetShaderResourceViews(const Vector<ShaderResourceView*>& shaderResourceViews) {
         Vector<ShaderResourceViewPtr> ret;
         for (uint i = 0; i < shaderResourceViews.Size(); ++i)
             ret.Add(shaderResourceViews[i] ? shaderResourceViews[i]->GetShaderResourceView() : nullptr);
+
+        return ret;
+    }
+
+    Vector<D3D11_VIEWPORT> GetViewports(const Vector<Viewport*>& viewports) {
+        Vector<D3D11_VIEWPORT> ret;
+        for (uint i = 0; i < viewports.Size(); ++i) {
+            Viewport* viewport = viewports[i];
+            ret.Add(viewport ? viewport->GetViewport() : D3D11_VIEWPORT());
+        }
+
+        return ret;
+    }
+
+    Vector<RenderTargetViewPtr> GetRenderTargets(const Vector<RenderTargetView*>& renderTargetViews) {
+        Vector<RenderTargetViewPtr> ret;
+        for (uint i = 0; i < renderTargetViews.Size(); ++i) {
+            RenderTargetView* view = renderTargetViews[i];
+            ret.Add(view ? view->GetRenderTargetView() : nullptr);
+        }
 
         return ret;
     }
@@ -88,141 +116,163 @@ namespace Pyro
         return *this;
     }
 
-    void PipelineState::Apply(DeviceContextPtr context, const PipelineState& desiredState) {
+    void PipelineState::Bind(DeviceContextPtr context, const PipelineState& desiredState) {
         if (inputAssembler.indexBuffer != desiredState.inputAssembler.indexBuffer ||
             inputAssembler.format != desiredState.inputAssembler.format) {
+
+            inputAssembler.indexBuffer = desiredState.inputAssembler.indexBuffer;
+            inputAssembler.format = desiredState.inputAssembler.format;
+
             context->IASetIndexBuffer(desiredState.inputAssembler.indexBuffer->GetBuffer(), desiredState.inputAssembler.format, 0);
         }
 
         if (inputAssembler.vertexBuffers != desiredState.inputAssembler.vertexBuffers ||
             inputAssembler.offsets != desiredState.inputAssembler.offsets ||
             inputAssembler.strides != desiredState.inputAssembler.strides) {
-            Vector<BufferPtr> buffers;
-            for (uint i = 0; i < desiredState.inputAssembler.vertexBuffers.Size(); ++i) {
-                VertexBuffer* vertexBuffer = desiredState.inputAssembler.vertexBuffers[i];
-                buffers.Add(vertexBuffer ? vertexBuffer->GetBuffer() : nullptr);
-            }
+
+            Vector<BufferPtr> buffers = GetVertexBuffers(desiredState.inputAssembler.vertexBuffers);
+
+            inputAssembler.vertexBuffers = desiredState.inputAssembler.vertexBuffers;
+            inputAssembler.offsets = desiredState.inputAssembler.offsets;
+            inputAssembler.strides = desiredState.inputAssembler.strides;
 
             context->IASetVertexBuffers(0, buffers.Size(), buffers.Data(), desiredState.inputAssembler.strides.Data(), desiredState.inputAssembler.offsets.Data());
         }
 
-        if (inputAssembler.inputLayout != desiredState.inputAssembler.inputLayout)
+        if (inputAssembler.inputLayout != desiredState.inputAssembler.inputLayout) {
+            inputAssembler.inputLayout = desiredState.inputAssembler.inputLayout;
             context->IASetInputLayout(desiredState.inputAssembler.inputLayout->GetInputLayout());
+        }
 
-        if (inputAssembler.topologyType != desiredState.inputAssembler.topologyType)
+        if (inputAssembler.topologyType != desiredState.inputAssembler.topologyType) {
+            inputAssembler.topologyType = desiredState.inputAssembler.topologyType;
             context->IASetPrimitiveTopology(TranslateDX11::toD3DTopology(desiredState.inputAssembler.topologyType));
+        }
 
-        if (rasterizer.rasterizerState != desiredState.rasterizer.rasterizerState)
+        if (rasterizer.rasterizerState != desiredState.rasterizer.rasterizerState) {
+            rasterizer.rasterizerState = desiredState.rasterizer.rasterizerState;
             context->RSSetState(desiredState.rasterizer.rasterizerState->GetRasterizerState());
+        }
 
         if (rasterizer.viewports != desiredState.rasterizer.viewports) {
-            Vector<D3D11_VIEWPORT> viewports;
-            for (uint i = 0; i < desiredState.rasterizer.viewports.Size(); ++i) {
-                Viewport* viewport = desiredState.rasterizer.viewports[i];
-                viewports.Add(viewport ? viewport->GetViewport() : D3D11_VIEWPORT());
-            }
-
+            Vector<D3D11_VIEWPORT> viewports = GetViewports(desiredState.rasterizer.viewports);
+            rasterizer.viewports = desiredState.rasterizer.viewports;
             context->RSSetViewports(viewports.Size(), viewports.Data());
         }
 
         if (outputMerger.blendState != desiredState.outputMerger.blendState) {
             float blendFactor[4] = { 0.0f,0.0f,0.0f,0.0f };
+            outputMerger.blendState = desiredState.outputMerger.blendState;
             context->OMSetBlendState(desiredState.outputMerger.blendState->GetBlendState(), blendFactor, D3D11_DEFAULT_SAMPLE_MASK);
         }
 
         if (outputMerger.depthStencilState != desiredState.outputMerger.depthStencilState ||
-            outputMerger.depthtStencilRef != desiredState.outputMerger.depthtStencilRef)
+            outputMerger.depthtStencilRef != desiredState.outputMerger.depthtStencilRef) {
+
+            outputMerger.depthStencilState = desiredState.outputMerger.depthStencilState;
+            outputMerger.depthtStencilRef = desiredState.outputMerger.depthtStencilRef;
+
             context->OMSetDepthStencilState(desiredState.outputMerger.depthStencilState->GetDepthStencilState(), desiredState.outputMerger.depthtStencilRef);
+        }
 
         if (outputMerger.depthStencilView != desiredState.outputMerger.depthStencilView ||
             outputMerger.renderTargetViews != desiredState.outputMerger.renderTargetViews) {
-            Vector<RenderTargetViewPtr> renderTargets;
-            for (uint i = 0; i < desiredState.outputMerger.renderTargetViews.Size(); ++i) {
-                RenderTargetView* renderTarget = desiredState.outputMerger.renderTargetViews[i];
-                renderTargets.Add(renderTarget ? renderTarget->GetRenderTargetView() : nullptr);
-            }
 
-            context->OMSetRenderTargets(renderTargets.Size(), renderTargets.Data(), desiredState.outputMerger.depthStencilView->GetDepthStencilView());
+            Vector<RenderTargetViewPtr> renderTargets = GetRenderTargets(desiredState.outputMerger.renderTargetViews);
+            DepthStencilView* depthStencilView = desiredState.outputMerger.depthStencilView;
+
+            outputMerger.renderTargetViews = desiredState.outputMerger.renderTargetViews;
+            outputMerger.depthStencilView = desiredState.outputMerger.depthStencilView;
+
+            context->OMSetRenderTargets(renderTargets.Size(), renderTargets.Data(), depthStencilView->GetDepthStencilView());
         }
 
         if (vertexShaderState.shader != desiredState.vertexShaderState.shader) {
             Shader* shader = desiredState.vertexShaderState.shader;
+            vertexShaderState.shader = desiredState.vertexShaderState.shader;
             context->VSSetShader(shader ? shader->GetVertexShader() : nullptr, nullptr, 0);
         }
 
         if (vertexShaderState.constantBuffers != desiredState.vertexShaderState.constantBuffers) {
             Vector<BufferPtr> buffers = GetConstantBuffers(desiredState.vertexShaderState.constantBuffers);
+            vertexShaderState.constantBuffers = desiredState.vertexShaderState.constantBuffers;
             context->VSSetConstantBuffers(0, buffers.Size(), buffers.Data());
         }
 
         if (vertexShaderState.samplers != desiredState.vertexShaderState.samplers) {
             Vector<SamplerStatePtr> samplers = GetSamplerState(desiredState.vertexShaderState.samplers);
+            vertexShaderState.samplers = desiredState.vertexShaderState.samplers;
             context->VSSetSamplers(0, samplers.Size(), samplers.Data());
         }
 
         if (vertexShaderState.shaderResourceViews != desiredState.vertexShaderState.shaderResourceViews) {
             Vector<ShaderResourceViewPtr> shaderResourceViews = GetShaderResourceViews(desiredState.vertexShaderState.shaderResourceViews);
+            vertexShaderState.shaderResourceViews = desiredState.vertexShaderState.shaderResourceViews;
             context->VSSetShaderResources(0, shaderResourceViews.Size(), shaderResourceViews.Data());
         }
 
         if (pixelShaderState.shader != desiredState.pixelShaderState.shader) {
             Shader* shader = desiredState.pixelShaderState.shader;
-            context->VSSetShader(shader ? shader->GetVertexShader() : nullptr, nullptr, 0);
+            pixelShaderState.shader = desiredState.pixelShaderState.shader;
+            context->PSSetShader(shader ? shader->GetPixelShader() : nullptr, nullptr, 0);
         }
 
         if (pixelShaderState.constantBuffers != desiredState.pixelShaderState.constantBuffers) {
             Vector<BufferPtr> buffers = GetConstantBuffers(desiredState.pixelShaderState.constantBuffers);
-            context->VSSetConstantBuffers(0, buffers.Size(), buffers.Data());
+            pixelShaderState.constantBuffers = desiredState.pixelShaderState.constantBuffers;
+            context->PSSetConstantBuffers(0, buffers.Size(), buffers.Data());
         }
 
         if (pixelShaderState.samplers != desiredState.pixelShaderState.samplers) {
             Vector<SamplerStatePtr> samplers = GetSamplerState(desiredState.pixelShaderState.samplers);
-            context->VSSetSamplers(0, samplers.Size(), samplers.Data());
+            pixelShaderState.samplers = desiredState.pixelShaderState.samplers;
+            context->PSSetSamplers(0, samplers.Size(), samplers.Data());
         }
 
         if (pixelShaderState.shaderResourceViews != desiredState.pixelShaderState.shaderResourceViews) {
             Vector<ShaderResourceViewPtr> shaderResourceViews = GetShaderResourceViews(desiredState.pixelShaderState.shaderResourceViews);
-            context->VSSetShaderResources(0, shaderResourceViews.Size(), shaderResourceViews.Data());
+            pixelShaderState.shaderResourceViews = desiredState.pixelShaderState.shaderResourceViews;
+            context->PSSetShaderResources(0, shaderResourceViews.Size(), shaderResourceViews.Data());
         }
 
         if (geometryShaderState.shader != desiredState.geometryShaderState.shader) {
             Shader* shader = desiredState.geometryShaderState.shader;
-            context->VSSetShader(shader ? shader->GetVertexShader() : nullptr, nullptr, 0);
+            context->GSSetShader(shader ? shader->GetGeometryShader() : nullptr, nullptr, 0);
         }
 
         if (geometryShaderState.constantBuffers != desiredState.geometryShaderState.constantBuffers) {
             Vector<BufferPtr> buffers = GetConstantBuffers(desiredState.geometryShaderState.constantBuffers);
-            context->VSSetConstantBuffers(0, buffers.Size(), buffers.Data());
+            context->GSSetConstantBuffers(0, buffers.Size(), buffers.Data());
         }
 
         if (geometryShaderState.samplers != desiredState.geometryShaderState.samplers) {
             Vector<SamplerStatePtr> samplers = GetSamplerState(desiredState.geometryShaderState.samplers);
-            context->VSSetSamplers(0, samplers.Size(), samplers.Data());
+            context->GSSetSamplers(0, samplers.Size(), samplers.Data());
         }
 
         if (geometryShaderState.shaderResourceViews != desiredState.geometryShaderState.shaderResourceViews) {
             Vector<ShaderResourceViewPtr> shaderResourceViews = GetShaderResourceViews(desiredState.geometryShaderState.shaderResourceViews);
-            context->VSSetShaderResources(0, shaderResourceViews.Size(), shaderResourceViews.Data());
+            context->GSSetShaderResources(0, shaderResourceViews.Size(), shaderResourceViews.Data());
         }
 
         if (computeShaderState.shader != desiredState.computeShaderState.shader) {
             Shader* shader = desiredState.computeShaderState.shader;
-            context->VSSetShader(shader ? shader->GetVertexShader() : nullptr, nullptr, 0);
+            context->CSSetShader(shader ? shader->GetComputeShader() : nullptr, nullptr, 0);
         }
 
         if (computeShaderState.constantBuffers != desiredState.computeShaderState.constantBuffers) {
             Vector<BufferPtr> buffers = GetConstantBuffers(desiredState.computeShaderState.constantBuffers);
-            context->VSSetConstantBuffers(0, buffers.Size(), buffers.Data());
+            context->CSSetConstantBuffers(0, buffers.Size(), buffers.Data());
         }
 
         if (computeShaderState.samplers != desiredState.computeShaderState.samplers) {
             Vector<SamplerStatePtr> samplers = GetSamplerState(desiredState.computeShaderState.samplers);
-            context->VSSetSamplers(0, samplers.Size(), samplers.Data());
+            context->CSSetSamplers(0, samplers.Size(), samplers.Data());
         }
 
         if (computeShaderState.shaderResourceViews != desiredState.computeShaderState.shaderResourceViews) {
             Vector<ShaderResourceViewPtr> shaderResourceViews = GetShaderResourceViews(desiredState.computeShaderState.shaderResourceViews);
-            context->VSSetShaderResources(0, shaderResourceViews.Size(), shaderResourceViews.Data());
+            context->CSSetShaderResources(0, shaderResourceViews.Size(), shaderResourceViews.Data());
         }
 
         *this = desiredState;
@@ -266,5 +316,4 @@ namespace Pyro
         computeShaderState.samplers.Resize(D3D11_COMMONSHADER_SAMPLER_SLOT_COUNT, nullptr);
         computeShaderState.shaderResourceViews.Resize(D3D11_COMMONSHADER_INPUT_RESOURCE_SLOT_COUNT, nullptr);
     }
-
 }

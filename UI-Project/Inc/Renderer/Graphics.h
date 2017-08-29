@@ -60,7 +60,7 @@ namespace Pyro
         RenderSettings& GetRenderSettings() { return renderSettings; }
         /// Return render settings
         const RenderSettings& GetRenderSettings() const { return renderSettings; }
-        
+
     private:
         Result CreateSwapChain();
     };

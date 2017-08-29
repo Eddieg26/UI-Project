@@ -39,10 +39,6 @@ namespace Pyro
         return SUCCEEDED(result) ? Result::Success : Result::Failed;
 	}
 
-	void BlendState::Bind(RenderContext& renderContext, bool force) {
-
-	}
-
     void BlendState::Release() {
         SAFERELEASE(blendState);
     }

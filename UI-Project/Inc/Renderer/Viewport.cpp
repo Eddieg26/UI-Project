@@ -20,6 +20,4 @@ namespace Pyro
         viewport.Width = width;
         viewport.Height = height;
     }
-
-
 }

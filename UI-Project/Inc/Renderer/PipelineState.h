@@ -26,7 +26,7 @@ namespace Pyro
 
         PipelineState& operator=(const PipelineState& rhs);
 
-        void Apply(DeviceContextPtr context, const PipelineState& desiredState);
+        void Bind(DeviceContextPtr context, const PipelineState& desiredState);
         void Clear();
 
         struct InputAssembler {
@@ -55,28 +55,7 @@ namespace Pyro
             uint depthtStencilRef;
         };
 
-        struct VertexShaderState {
-            Shader* shader;
-            Vector<ConstantBuffer*> constantBuffers;
-            Vector<SamplerState*> samplers;
-            Vector<ShaderResourceView*> shaderResourceViews;
-        };
-
-        struct PixelShaderState {
-            Shader* shader;
-            Vector<ConstantBuffer*> constantBuffers;
-            Vector<SamplerState*> samplers;
-            Vector<ShaderResourceView*> shaderResourceViews;
-        };
-
-        struct GeometryShaderState {
-            Shader* shader;
-            Vector<ConstantBuffer*> constantBuffers;
-            Vector<SamplerState*> samplers;
-            Vector<ShaderResourceView*> shaderResourceViews;
-        };
-
-        struct ComputeShaderState {
+        struct ShaderState {
             Shader* shader;
             Vector<ConstantBuffer*> constantBuffers;
             Vector<SamplerState*> samplers;
@@ -86,9 +65,9 @@ namespace Pyro
         InputAssembler inputAssembler;
         Rasterizer rasterizer;
         OutputMerger outputMerger;
-        VertexShaderState vertexShaderState;
-        PixelShaderState pixelShaderState;
-        GeometryShaderState geometryShaderState;
-        ComputeShaderState computeShaderState;
+        ShaderState vertexShaderState;
+        ShaderState pixelShaderState;
+        ShaderState geometryShaderState;
+        ShaderState computeShaderState;
     };
 }
